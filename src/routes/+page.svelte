@@ -5,7 +5,8 @@
 	import { ArrowUpRight } from 'phosphor-svelte';
 	import Header from '$lib/components/sections/Header.svelte';
 	import { Button } from '$lib/components/ui/button';
-
+	import { Image } from '@unpic/svelte';
+	import { urlFor } from '$lib/sanity/image';
 	import * as Select from '$lib/components/ui/select/index.js';
 
 	const { data } = $props<{ data: PageData }>();
@@ -107,7 +108,7 @@
 	{#each products as product, index}
 		<div class="group flex flex-col gap-2">
 			<div
-				class="bg-card group group-hover:ring-primary relative h-[520px] w-full transition-all duration-300 group-hover:ring-2"
+				class="bg-card group group-hover:ring-primary relative h-[600px] w-full transition-all duration-300 group-hover:ring-2"
 			>
 				<a
 					href={`${product.url}?utm_source=tossfly.com&utm_medium=referral` || ''}
@@ -117,7 +118,13 @@
 				>
 					<ArrowUpRight class="text-primary h-5 w-5" />
 				</a>
-				<img src="/demo.png" alt="Product" class="h-full w-full object-cover object-top" />
+				<Image
+					src={urlFor(product.mainImage).fit('max').url()}
+					layout="constrained"
+					loading="lazy"
+					alt={product.title}
+					class="h-full w-full object-cover object-top"
+				/>
 			</div>
 			<a
 				href={`${product.url}?utm_source=tossfly.com&utm_medium=referral` || ''}
