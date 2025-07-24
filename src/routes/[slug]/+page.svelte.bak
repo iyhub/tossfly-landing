@@ -1,0 +1,89 @@
+<script lang="ts">
+	import type { Product } from '$lib/sanity/queries';
+	import type { PageProps } from './$types';
+	import { useQuery } from '@sanity/svelte-loader';
+	import { Image } from '@unpic/svelte';
+	import { urlFor } from '$lib/sanity/image';
+	import Header from '$lib/components/sections/Header.svelte';
+	import { Button } from '$lib/components/ui/button';
+
+	let { data }: PageProps = $props();
+
+	console.log('slug-->', data);
+
+	const q = useQuery(data);
+
+	let product = $state<Product>($q.data as Product);
+	$inspect(product);
+</script>
+
+<svelte:head>
+	<title>{product.title} - Tossfly</title>
+	<meta name="description" content={product.description} />
+	<meta property="og:title" content={product.title} />
+	<meta property="og:description" content={product.description} />
+	<meta property="og:image" content={urlFor(product.mainImage).fit('max').url()} />
+	<meta property="og:url" content={`https://tossfly.com/${product.slug.current}`} />
+	<meta property="og:type" content="website" />
+</svelte:head>
+
+<Header />
+<div class="flex h-screen flex-col gap-4 pt-4 md:flex-row">
+	<section class="h-full flex-1">
+		<Image
+			src={urlFor(product.mainImage).fit('max').url()}
+			layout="constrained"
+			class="h-full w-full shadow-sm"
+			alt={product.title}
+		/>
+	</section>
+
+	<aside class="order-1 shrink-0 md:w-[340px] md:basis-[340px]">
+		<section class="sticky top-6 flex w-full flex-col gap-4">
+			<Button
+				class="shadow-md"
+				size="lg"
+				href={`${product.url}?utm_source=tossfly.com&utm_medium=referral` || ''}
+				target="_blank"
+			>
+				Visit Website
+			</Button>
+
+			<div class="flex flex-col gap-2 rounded-md bg-orange-50 p-4 shadow-md">
+				<h1 class="text-2xl font-bold">{product.title}</h1>
+				<p class="text-sm">
+					SayBriefly is a meeting assistant tailored for creative professionals, freelancers,
+					agencies, and design studios. It automatically transforms live or recorded client calls
+					into polished, organized outputs—generating intelligible transcripts, succinct summaries,
+					and actionable briefs.
+				</p>
+
+				<hr class="my-2" />
+
+				<div class="flex gap-2">
+					<span class="w-24"><h3 class="text-sm font-bold">Fonts</h3></span>
+					<span class="flex-1"> Bricolage Grotesque, Inter, Roboto Mono</span>
+				</div>
+
+				<div class="flex gap-2">
+					<h3 class="w-24 text-sm font-bold">Palette</h3>
+					<div class="flex flex-1 gap-0.5">
+						<div class="size-8 bg-amber-300"></div>
+						<div class="size-8 bg-amber-400"></div>
+						<div class="size-8 bg-amber-500"></div>
+					</div>
+				</div>
+
+				<div class="flex gap-2">
+					<span class="w-24"><h3 class="text-sm font-bold">Stack</h3></span>
+					<span class="flex-1"> GSAP, Next.js, React, Tailwind CSS, WordPress</span>
+				</div>
+
+				<div class="flex gap-2">
+					<span class="w-24"><h3 class="text-sm font-bold">Category</h3></span>
+					<span class="flex-1"> Productivity</span>
+				</div>
+			</div>
+		</section>
+	</aside>
+</div>

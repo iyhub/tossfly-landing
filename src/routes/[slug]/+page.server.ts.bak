@@ -1,0 +1,15 @@
+// import { productQuery as query, type Product } from '$lib/sanity/queries';
+// import type { PageServerLoad } from './$types';
+
+// export const load: PageServerLoad = async (event) => {
+// 	const { loadQuery } = event.locals;
+
+// 	const initial = await loadQuery<Product>(query, { slug: event.params.slug });
+
+// 	return {
+// 		query,
+// 		options: {
+// 			initial
+// 		}
+// 	};
+// };
