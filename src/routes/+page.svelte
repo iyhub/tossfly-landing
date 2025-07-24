@@ -38,9 +38,13 @@
 	<meta name="description" content="A curated collection of AI SaaS landing pages" />
 	<meta property="og:title" content="AI SaaS landing page inspiration - Tossfly" />
 	<meta property="og:description" content="A curated collection of AI SaaS landing pages" />
-	<meta property="og:image" content="/demo.png" />
+	<meta property="og:image" content="https://tossfly.com/og-image.png" />
 	<meta property="og:url" content="https://tossfly.com" />
 	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="AI SaaS landing page inspiration - Tossfly" />
+	<meta name="twitter:description" content="A curated collection of AI SaaS landing pages" />
+	<meta name="twitter:image" content="https://tossfly.com/og-image.png" />
 </svelte:head>
 <!-- <Header /> -->
 
