@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/sections/Footer.svelte';
 	import { onMount } from 'svelte';
 	import { PUBLIC_CLARITY_ID } from '$env/static/public';
+	import Header from '$lib/components/sections/Header.svelte';
 
 	let { children } = $props();
 
@@ -19,7 +20,7 @@
 		document.head.appendChild(script);
 	});
 </script>
-
+<Header />
 <main class="mx-auto max-w-screen-2xl p-2">
 	{@render children()}
 	<Footer />

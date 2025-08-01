@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { AirplaneLanding, Image, DiamondsFour } from 'phosphor-svelte';
+	import { Button } from "$lib/components/ui/button/index.js";
 </script>
 
 <header class="bg-card border-b py-2">
@@ -18,5 +19,6 @@
 				<a href="/" class="flex items-center gap-1.5"><DiamondsFour class="h-5 w-5" /> Templates</a>
 			</li>
 		</ul> -->
+		<Button href="/submit">Submit</Button>
 	</div>
 </header>
